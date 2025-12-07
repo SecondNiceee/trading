@@ -55,9 +55,8 @@ export function AppSidebar() {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className={cn(
-          "md:hidden fixed top-4 z-[60] p-3 rounded-xl bg-[#1a0f2e] border border-[#5F0BE8]/30",
+          "md:hidden fixed top-4 right-4 z-[60] p-3 rounded-xl bg-[#1a0f2e] border border-[#5F0BE8]/30",
           "hover:bg-[#5F0BE8]/20 transition-colors",
-          isRTL ? "right-4" : "left-4",
         )}
       >
         {mobileOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
