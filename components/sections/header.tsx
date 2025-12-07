@@ -128,12 +128,12 @@ export function Header() {
     const currentLang = languages.find((l) => l.value === locale) || languages[0]
 
     return (
-      <div className="relative" ref={langDropdownRef}>
+      <div className="relative mr-14 md:mr-0" ref={langDropdownRef}>
         <button
           onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-          className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors"
+          className="flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-4 lg:px-6 lg:py-5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors"
         >
-          <span className="text-sm text-white/90 font-medium">{currentLang.code}</span>
+          <span className="text-sm sm:text-base text-white/90 font-medium">{currentLang.code}</span>
           <ChevronDown
             className={cn("h-3.5 w-3.5 text-white/60 transition-transform", langDropdownOpen && "rotate-180")}
           />
@@ -198,6 +198,7 @@ export function Header() {
           ) : (
             <>
               <LanguageSelector />
+              {hasSidebar && <MobileSidebarTrigger />}
               <AuthDialog
                 open={authDialogOpen}
                 onOpenChange={setAuthDialogOpen}
@@ -227,8 +228,6 @@ export function Header() {
                   </Button>
                 }
               />
-
-              {hasSidebar && <MobileSidebarTrigger />}
             </>
           )}
         </div>
