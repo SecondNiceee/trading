@@ -20,7 +20,7 @@ function MobileSidebarTrigger() {
   return (
     <button
       onClick={toggleSidebar}
-      className="md:hidden p-3 rounded-full bg-gradient-to-r from-[#6B21A8] via-[#7C3AED] to-[#8B5CF6] text-white hover:from-[#581C87] hover:via-[#6D28D9] hover:to-[#7C3AED] shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-colors"
+      className="md:hidden p-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 text-white transition-colors"
     >
       <Menu className="h-5 w-5" />
     </button>
@@ -205,8 +205,6 @@ export function Header() {
                 onAuthSuccess={handleAuthSuccess}
               />
 
-              {hasSidebar && <MobileSidebarTrigger />}
-
               {/* Desktop buttons */}
               <AuthDialog
                 defaultMode="login"
@@ -229,6 +227,8 @@ export function Header() {
                   </Button>
                 }
               />
+
+              {hasSidebar && <MobileSidebarTrigger />}
             </>
           )}
         </div>
