@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/toaster"
 import { AppSidebar } from "@/components/app-sidebar"
+import { LayoutWrapper } from "@/components/layout-wrapper"
 import { LanguageProvider } from "@/lib/i18n/language-context"
 import "./globals.css"
 
@@ -29,7 +30,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <LanguageProvider>
           <AppSidebar />
-          <div className="pl-0 md:pl-[68px] rtl:pr-0 rtl:md:pr-[68px] rtl:md:pl-0">{children}</div>
+          <LayoutWrapper>{children}</LayoutWrapper>
           <Toaster />
           <Analytics />
         </LanguageProvider>
