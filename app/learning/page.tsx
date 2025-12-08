@@ -3,8 +3,10 @@
 import Image from "next/image"
 import { Header } from "@/components/sections/header"
 import { Card } from "@/components/ui/card"
-import { GraduationCap } from "lucide-react"
+import { GraduationCap, BookOpen } from "lucide-react"
 import { useLanguage } from "@/lib/i18n/language-context"
+import { ForexLessonContent } from "@/components/learning/forex-lesson-content"
+import { ForexQuiz } from "@/components/learning/forex-quiz"
 
 export default function LearningPage() {
   const { t } = useLanguage()
@@ -26,18 +28,28 @@ export default function LearningPage() {
 
       {/* Main content */}
       <main className="relative z-10 px-4 sm:px-6 lg:px-16 py-8 lg:py-16">
-        <div className="mx-auto max-w-2xl">
-          <Card className="border-2 border-[#5F0BE8]/50 bg-[#1a0f2e]/40 backdrop-blur-xl shadow-[0_0_40px_rgba(95,11,232,0.3)] p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem]">
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-20 h-20 rounded-full bg-purple-600/20 flex items-center justify-center mb-6">
-                <GraduationCap className="w-10 h-10 text-purple-500" />
+        <div className="mx-auto max-w-3xl">
+          <Card className="border-2 border-[#5F0BE8]/50 bg-[#1a0f2e]/40 backdrop-blur-xl shadow-[0_0_40px_rgba(95,11,232,0.3)] p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] mb-8">
+            <div className="flex flex-col items-center justify-center text-center">
+              <div className="w-16 h-16 rounded-full bg-purple-600/20 flex items-center justify-center mb-4">
+                <BookOpen className="w-8 h-8 text-purple-500" />
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                <span className="text-purple-500">{t.learning.title}</span> {t.learning.center}
-              </h1>
-              <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-md">{t.learning.comingSoon}</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Forex Basics</h1>
+              <p className="text-white/60 text-sm">Learn the fundamentals of currency trading</p>
             </div>
           </Card>
+
+          <ForexLessonContent />
+
+          <div className="mt-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-purple-600/20 flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-purple-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white">Test Your Knowledge</h2>
+            </div>
+            <ForexQuiz />
+          </div>
         </div>
       </main>
     </div>

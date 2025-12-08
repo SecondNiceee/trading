@@ -16,6 +16,7 @@ export const translations = {
       verified: "VERIFIED",
       years: "years",
       yearsOld: "years old",
+      calculate: "Calculate",
     },
 
     // Header
@@ -254,6 +255,7 @@ export const translations = {
       verified: "VERIFICADO",
       years: "años",
       yearsOld: "años",
+      calculate: "Calcular",
     },
 
     // Header
@@ -494,6 +496,7 @@ export const translations = {
       verified: "VERIFICADO",
       years: "anos",
       yearsOld: "anos",
+      calculate: "Calcular",
     },
 
     // Header
@@ -734,6 +737,7 @@ export const translations = {
       verified: "موثق",
       years: "سنوات",
       yearsOld: "سنة",
+      calculate: "حساب",
     },
 
     // Header
@@ -894,7 +898,7 @@ export const translations = {
       title: "مراجعة",
       review: "التداول",
       description: "شارك تجربتك في التداول وملاحظاتك معنا. رؤاك تساعدنا على تحسين خدماتنا.",
-      yourReview: "مراجعتك",
+      yourReview: "مراحلتك",
       placeholder: "اكتب مراجعة التداول هنا...",
       attachImage: "إرفاق صورة (اختياري)",
       dragDrop: "اسحب وأفلت صورة أو انقر للتصفح",

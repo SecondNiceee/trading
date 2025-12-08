@@ -5,7 +5,7 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import { X, Send, Loader2, ImageIcon } from "lucide-react"
+import { X, Send, Loader2, ImageIcon, Calculator } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/sections/header"
 import { toast } from "sonner"
@@ -135,7 +135,7 @@ export default function TradingReviewPage() {
 
               {/* Review text area */}
               <div className="space-y-3">
-                <label className="text-white/90 text-sm font-medium">{t.tradingReview.yourReview}</label>
+                <label className="text-white/90 text-sm font-medium block mb-2">{t.tradingReview.yourReview}</label>
                 <Textarea
                   value={reviewText}
                   onChange={(e) => setReviewText(e.target.value)}
@@ -146,7 +146,7 @@ export default function TradingReviewPage() {
 
               {/* Image upload */}
               <div className="space-y-3">
-                <label className="text-white/90 text-sm font-medium">{t.tradingReview.attachImage}</label>
+                <label className="text-white/90 text-sm font-medium block mb-2">{t.tradingReview.attachImage}</label>
 
                 {!uploadedImage ? (
                   <div
@@ -217,6 +217,17 @@ export default function TradingReviewPage() {
           </Card>
         </div>
       </main>
+
+      <Button
+        onClick={() => {
+          // Navigate to calculator or open calculator modal
+          window.location.href = "/calculator"
+        }}
+        className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-[#6B21A8] via-[#7C3AED] to-[#8B5CF6] text-white hover:from-[#581C87] hover:via-[#6D28D9] hover:to-[#7C3AED] px-6 py-3 rounded-full shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-all hover:scale-105"
+      >
+        <Calculator className="w-5 h-5 mr-2" />
+        {t.common.calculate || "Calculate"}
+      </Button>
     </div>
   )
 }
