@@ -67,7 +67,7 @@ export function AppSidebar() {
       {/* Desktop sidebar */}
       <div
         className={cn(
-          "fixed top-0 z-50 h-full bg-[#0d0b10] border-[#5F0BE8]/20",
+          "fixed top-0 z-[10000] h-full bg-[#0d0b10] border-[#5F0BE8]/20",
           "flex-col transition-all duration-300 ease-in-out",
           "hidden md:flex",
           expanded ? "w-[220px]" : "w-[68px]",
@@ -130,7 +130,7 @@ export function AppSidebar() {
 
       <div
         className={cn(
-          "md:hidden fixed top-0 z-50 h-full w-[280px] bg-[#0d0b10] border-[#5F0BE8]/20",
+          "md:hidden fixed top-0 z-[10000] h-full w-[280px] bg-[#0d0b10] border-[#5F0BE8]/20",
           "flex flex-col transition-transform duration-300 ease-in-out",
           isRTL ? "right-0 border-l" : "left-0 border-r",
           mobileOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full",
