@@ -128,7 +128,7 @@ export function Header() {
     const currentLang = languages.find((l) => l.value === locale) || languages[0]
 
     return (
-      <div className="relative mr-14 md:mr-0" ref={langDropdownRef}>
+      <div className="relative mr-14 md:mr-0 z-[100]" ref={langDropdownRef}>
         <button
           onClick={() => setLangDropdownOpen(!langDropdownOpen)}
           className="flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-6 h-[42px] lg:h-[58px] rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors sm:h-10"
@@ -140,7 +140,7 @@ export function Header() {
         </button>
 
         {langDropdownOpen && (
-          <div className="absolute top-full right-0 rtl:right-auto rtl:left-0 mt-2 py-1 bg-[#1a0f2e] border border-[#5F0BE8]/40 rounded-xl shadow-xl shadow-purple-900/20 overflow-hidden z-50 min-w-[160px]">
+          <div className="absolute top-full right-0 rtl:right-auto rtl:left-0 mt-2 py-1 bg-[#1a0f2e] border border-[#5F0BE8]/40 rounded-xl shadow-xl shadow-purple-900/20 overflow-hidden z-[200] min-w-[160px]">
             {languages.map((lang) => (
               <button
                 key={lang.value}
@@ -165,7 +165,7 @@ export function Header() {
   }
 
   return (
-    <header className="relative z-10 px-4 py-4 sm:px-6 sm:py-5 lg:px-16 lg:py-6">
+    <header className="relative z-[9999] px-4 py-4 sm:px-6 sm:py-5 lg:px-16 lg:py-6">
       <div className="mx-auto max-w-7xl flex items-center justify-between">
         <Link
           href={redirectPath}
