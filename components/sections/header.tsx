@@ -131,7 +131,7 @@ export function Header() {
       <div className="relative mr-14 md:mr-0 z-[100]" ref={langDropdownRef}>
         <button
           onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-          className="flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-6 h-[42px] lg:h-[58px] rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors sm:h-10"
+          className="flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-6 h-[42px] md:h-[41.6px] rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors"
         >
           <span className="text-sm sm:text-base text-white/90 font-medium">{currentLang.code}</span>
           <ChevronDown
