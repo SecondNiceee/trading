@@ -7,6 +7,8 @@ import { BarChart3, GraduationCap, MessageSquareText, Settings, LogOut, Menu, X 
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/lib/i18n/language-context"
 import { useRouter } from "next/navigation"
+import { AuthDialog } from "@/components/auth-dialog"
+import { Button } from "@/components/ui/button"
 
 export function AppSidebar() {
   const pathname = usePathname()
@@ -14,6 +16,28 @@ export function AppSidebar() {
   const [expanded, setExpanded] = React.useState(false)
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const { t, isRTL } = useLanguage()
+
+  // ============================================
+  // ПРОВЕРКА АВТОРИЗАЦИИ (Authentication Check)
+  // Sidebar отображается ТОЛЬКО для залогиненных пользователей
+  // Если пользователь не залогинен - показываем кнопки Login/Signup
+  // ============================================
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  React.useEffect(() => {
+    // Проверяем статус авторизации при загрузке и при изменениях в localStorage
+    const checkAuthStatus = () => {
+      const token = typeof window !== "undefined" ? localStorage.getItem("AUTH_TOKEN") : null
+      const email = typeof window !== "undefined" ? localStorage.getItem("USER_EMAIL") : null
+      setIsLoggedIn(!!(token && email))
+    }
+
+    checkAuthStatus()
+
+    // Слушаем изменения в localStorage (например, при logout в другой вкладке)
+    window.addEventListener("storage", checkAuthStatus)
+    return () => window.removeEventListener("storage", checkAuthStatus)
+  }, [])
 
   const menuItems = [
     {
@@ -50,8 +74,47 @@ export function AppSidebar() {
     router.push("/")
   }
 
+  // ============================================
+  // ЕСЛИ ПОЛЬЗОВАТЕЛЬ НЕ ЗАЛОГИНЕН:
+  // Вместо sidebar показываем кнопки Login/Signup на мобильных устройствах
+  // На десктопе sidebar просто не отображается
+  // ============================================
+  if (!isLoggedIn) {
+    return (
+      <>
+        {/* Мобильные кнопки Login/Signup вместо меню-бургера */}
+        <div className="md:hidden fixed top-4 right-4 z-[60] flex items-center gap-2">
+          <AuthDialog
+            defaultMode="login"
+            trigger={
+              <Button
+                variant="ghost"
+                className="text-sm text-white hover:bg-white/10 hover:text-white bg-[#1a0f2e] border border-[#5F0BE8]/30 px-4 py-2 rounded-xl"
+              >
+                {t.common.login}
+              </Button>
+            }
+          />
+          <AuthDialog
+            defaultMode="signup"
+            trigger={
+              <Button className="text-sm text-white bg-gradient-to-r from-[#6B21A8] via-[#7C3AED] to-[#8B5CF6] hover:from-[#581C87] hover:via-[#6D28D9] hover:to-[#7C3AED] px-4 py-2 rounded-xl shadow-[0_0_20px_rgba(139,92,246,0.4)]">
+                {t.common.signup}
+              </Button>
+            }
+          />
+        </div>
+      </>
+    )
+  }
+
+  // ============================================
+  // ЕСЛИ ПОЛЬЗОВАТЕЛЬ ЗАЛОГИНЕН:
+  // Показываем полноценный sidebar (десктоп + мобильный)
+  // ============================================
   return (
     <>
+      {/* Кнопка открытия мобильного меню (только для залогиненных) */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className={cn(
@@ -62,9 +125,10 @@ export function AppSidebar() {
         {mobileOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
       </button>
 
+      {/* Затемнение фона при открытом мобильном меню */}
       {mobileOpen && <div className="md:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setMobileOpen(false)} />}
 
-      {/* Desktop sidebar */}
+      {/* Desktop sidebar - только для залогиненных пользователей */}
       <div
         className={cn(
           "fixed top-0 z-[10000] h-full bg-[#0d0b10] border-[#5F0BE8]/20",
@@ -128,6 +192,7 @@ export function AppSidebar() {
         </div>
       </div>
 
+      {/* Mobile sidebar - только для залогиненных пользователей */}
       <div
         className={cn(
           "md:hidden fixed top-0 z-[10000] h-full w-[280px] bg-[#0d0b10] border-[#5F0BE8]/20",
